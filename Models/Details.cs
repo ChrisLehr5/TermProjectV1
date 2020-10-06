@@ -9,6 +9,7 @@ namespace TermProjectV1.Models
     public class Details
     {
         public int ID { get; set; }
+        //changed from ID
         public DateTime detailDate { get; set; } = DateTime.Now;
         [Range(16,110, ErrorMessage ="Please enter an age between 16 and 110 years old.")]
         public int age { get; set; }

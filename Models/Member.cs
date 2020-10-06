@@ -9,6 +9,7 @@ namespace TermProjectV1.Models
     public class Member
     {
         public int ID { get; set; }
+        //changed from id
         [Required]
         [StringLength(30,ErrorMessage ="Please enter the member full name using 30 characters or less.")]
         public string name { get; set; }

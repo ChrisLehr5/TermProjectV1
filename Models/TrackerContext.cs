@@ -13,12 +13,35 @@ namespace TermProjectV1.Models
 		{ }
 		public DbSet<Member> Membership { get; set; }
 		public DbSet<Details> Statistics { get; set; }
+		public DbSet<Reference> References { get; set; }
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
+
+			modelBuilder.Entity<Reference>().HasData(
+				new Reference
+				{
+					ReferenceId = 1,
+					Name = "Brett Macki",
+					ID = 2
+				},
+				new Reference
+				{
+					ReferenceId = 2,
+					Name = "Tim Largent",
+					ID = 3
+				},
+				new Reference
+				{
+					ReferenceId = 3,
+					Name = "Max Lehr",
+					ID = 1
+				}
+				);
+
 			modelBuilder.Entity<Member>().HasData(
 				new Member
                 {
-					ID= 1, 
+					ID = 1, 
 					name= "Tim Largent"					
                 },
 				new Member
@@ -29,7 +52,7 @@ namespace TermProjectV1.Models
 				},
 				new Member
 				{
-					ID = 3,
+				ID= 3,
 					name = "Brett Macki"					
 				}
 			 );

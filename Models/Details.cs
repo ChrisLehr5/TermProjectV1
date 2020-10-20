@@ -10,7 +10,11 @@ namespace TermProjectV1.Models
     {
         public int ID { get; set; }
         //changed from ID
+
+        [Display(Name = "Date of Membership")]
         public DateTime detailDate { get; set; } = DateTime.Now;
+
+        [Display(Name = "Member Age")]
         [Range(16,110, ErrorMessage ="Please enter an age between 16 and 110 years old.")]
         public int age { get; set; }
         [Required]

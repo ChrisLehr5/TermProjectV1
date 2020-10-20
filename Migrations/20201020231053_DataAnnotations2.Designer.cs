@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TermProjectV1.Models;
 
 namespace TermProjectV1.Migrations
 {
     [DbContext(typeof(TrackerContext))]
-    partial class TrackerContextModelSnapshot : ModelSnapshot
+    [Migration("20201020231053_DataAnnotations2")]
+    partial class DataAnnotations2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -48,21 +50,21 @@ namespace TermProjectV1.Migrations
                             ID = 1,
                             MemberID = 1,
                             age = 34,
-                            detailDate = new DateTime(2020, 10, 20, 19, 13, 58, 856, DateTimeKind.Local).AddTicks(83)
+                            detailDate = new DateTime(2020, 10, 20, 19, 10, 53, 579, DateTimeKind.Local).AddTicks(4111)
                         },
                         new
                         {
                             ID = 2,
                             MemberID = 2,
                             age = 31,
-                            detailDate = new DateTime(2020, 10, 20, 19, 13, 58, 859, DateTimeKind.Local).AddTicks(85)
+                            detailDate = new DateTime(2020, 10, 20, 19, 10, 53, 582, DateTimeKind.Local).AddTicks(4113)
                         },
                         new
                         {
                             ID = 3,
                             MemberID = 3,
                             age = 37,
-                            detailDate = new DateTime(2020, 10, 20, 19, 13, 58, 859, DateTimeKind.Local).AddTicks(85)
+                            detailDate = new DateTime(2020, 10, 20, 19, 10, 53, 582, DateTimeKind.Local).AddTicks(4113)
                         });
                 });
 

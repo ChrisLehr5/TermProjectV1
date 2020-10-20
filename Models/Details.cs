@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -11,7 +12,7 @@ namespace TermProjectV1.Models
         public int ID { get; set; }
         //changed from ID
 
-        [Display(Name = "Date of Membership")]
+        [Display(Name = "Date of Membership")]        
         public DateTime detailDate { get; set; } = DateTime.Now;
 
         [Display(Name = "Member Age")]

@@ -22,7 +22,7 @@ namespace TermProjectV1.Models
 				{
 					ReferenceId = 1,
 					Name = "Brett Macki",
-					ID = 2
+					ID = 2, 					
 				},
 				new Reference
 				{

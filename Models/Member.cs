@@ -15,10 +15,16 @@ namespace TermProjectV1.Models
         //changed from id
         [Required]
         [Column("Member Full Name")]
-        [Display(Name ="Full Name")]
-        [StringLength(30,ErrorMessage ="Please enter the member full name using 30 characters or less.")]
+        [Display(Name ="First Name")]
+        [StringLength(50,ErrorMessage ="Please enter the member full name using 30 characters or less.")]
         [RegularExpression("^[a-zA-Z]*$", ErrorMessage = "Only alphabetic letters are allowed.")]
         public string name { get; set; }
+
+        [Required]
+        [Column("Member Last Name")]
+        [Display(Name = "Last Name")]
+        [StringLength(50, MinimumLength = 3)]
+        public string LastName { get; set; }
 
         [Display(Name = "Gender")]
         public string gender { get; set; }

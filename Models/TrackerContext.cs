@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 
+
 namespace TermProjectV1.Models
 {
     public class TrackerContext : DbContext
@@ -22,18 +23,21 @@ namespace TermProjectV1.Models
 				{
 					ReferenceId = 1,
 					Name = "Brett Macki",
+					LastName = "Frank",
 					ID = 2, 					
 				},
 				new Reference
 				{
 					ReferenceId = 2,
 					Name = "Tim Largent",
+					LastName = "Frank",
 					ID = 3
 				},
 				new Reference
 				{
 					ReferenceId = 3,
 					Name = "Max Lehr",
+					LastName = "Frank",
 					ID = 1
 				}
 				);
@@ -42,18 +46,21 @@ namespace TermProjectV1.Models
 				new Member
                 {
 					ID = 1, 
-					name= "Tim Largent"					
+					name= "Tim Largent",
+					LastName = "Frank"
                 },
 				new Member
 				{
 					ID = 2,
 					name = "Max Lehr",
+					LastName = "Frank",
 					email = "mlehr@mail.com"
 				},
 				new Member
 				{
 				ID= 3,
-					name = "Brett Macki"					
+					name = "Brett Macki",
+					LastName = "Frank"
 				}
 			 );
 			modelBuilder.Entity<Details>().HasData(

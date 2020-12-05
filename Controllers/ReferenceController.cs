@@ -19,9 +19,44 @@ namespace TermProjectV1.Controllers
         }
 
         // GET: Reference
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string sortOrder, string currentFilter, string searchString, int? pageNumber)
         {
-            return View(await _context.References.ToListAsync());
+
+            ViewData["CurrentSort"] = sortOrder;
+            ViewData["NameSortParam"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";         
+
+            if (searchString != null)
+            {
+                pageNumber = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewData["CurrentFilter"] = searchString;
+
+
+            var reference = from e in _context.References select e;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                reference = reference.Where(s => s.LastName.Contains(searchString)
+                     || s.Name.Contains(searchString));
+            }
+
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    reference = reference.OrderByDescending(s => s.LastName);
+                    break;               
+                default:
+                    reference.OrderBy(s => s.LastName);
+                    break;
+            }
+            int pageSize = 2;
+            return View(await PaginatedList<Reference>.CreateAsync(reference.AsNoTracking(), pageNumber ?? 1, pageSize));
+
         }
 
         // GET: Reference/Details/5

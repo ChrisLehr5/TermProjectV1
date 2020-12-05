@@ -56,7 +56,7 @@ namespace TermProjectV1.Models
         [RegularExpression(@"\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})", ErrorMessage = "Please enter your phone number i.e 231-988-8888.")]
         public string cell { get; set; }
 
-        //Nvaigation property
+        //Navigation property
         //public ICollection<MemberReference> MemberReferences { get; set; }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using TermProjectV1.Models;
 
 
 namespace TermProjectV1.Models
@@ -14,7 +15,8 @@ namespace TermProjectV1.Models
 		{ }
 		public DbSet<Member> Membership { get; set; }
 		public DbSet<Details> Statistics { get; set; }
-		public DbSet<Reference> References { get; set; }
+		public DbSet<Reference> References { get; set; }		
+		public DbSet<MemberReference> MemberReferences { get; set; }
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
 
@@ -24,7 +26,7 @@ namespace TermProjectV1.Models
 					ReferenceId = 1,
 					Name = "Brett",
 					LastName = "Macki",
-					ID = 2, 					
+					ID = 2,
 				},
 				new Reference
 				{
@@ -44,9 +46,9 @@ namespace TermProjectV1.Models
 
 			modelBuilder.Entity<Member>().HasData(
 				new Member
-                {
-					ID = 1, 
-					name= "Tim",
+				{
+					ID = 1,
+					name = "Tim",
 					LastName = "Largent"
 				},
 				new Member
@@ -58,7 +60,7 @@ namespace TermProjectV1.Models
 				},
 				new Member
 				{
-				ID= 3,
+					ID = 3,
 					name = "Brett",
 					LastName = "Macki"
 				}
@@ -68,7 +70,7 @@ namespace TermProjectV1.Models
 				{
 					ID = 1,
 					age = 34,
-					MemberID= 1
+					MemberID = 1
 				},
 				new Details
 				{
@@ -83,7 +85,13 @@ namespace TermProjectV1.Models
 					MemberID = 3
 				}
 			 );
+			modelBuilder.Entity<MemberReference>().HasData(
+				new MemberReference { ID = 1, MemberID = 1, ReferenceID = 1 },
+				new MemberReference { ID = 2, MemberID = 2, ReferenceID = 2 },
+				new MemberReference { ID = 3, MemberID = 3, ReferenceID = 3 }
+			);
 		}
+		public DbSet<TermProjectV1.Models.MemberReference> MemberReference { get; set; }
 
 	}
 }

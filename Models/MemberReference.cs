@@ -7,6 +7,8 @@ namespace TermProjectV1.Models
 {
     public class MemberReference
     {
+        
+        public int ID { get; set; }
         //Composite Primary key and foreign key for Member 
         public int MemberID { get; set; }
         //Composite Primary key and foreign key for reference 

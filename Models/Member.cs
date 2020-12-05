@@ -57,6 +57,6 @@ namespace TermProjectV1.Models
         public string cell { get; set; }
 
         //Navigation property
-        //public ICollection<MemberReference> MemberReferences { get; set; }
+        public ICollection<MemberReference> References { get; set; }
     }
 }

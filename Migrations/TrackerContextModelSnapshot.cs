@@ -15,7 +15,7 @@ namespace TermProjectV1.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.8")
+                .HasAnnotation("ProductVersion", "3.1.10")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -47,21 +47,21 @@ namespace TermProjectV1.Migrations
                             ID = 1,
                             MemberID = 1,
                             age = 34,
-                            detailDate = new DateTime(2020, 11, 16, 16, 20, 8, 373, DateTimeKind.Local).AddTicks(5436)
+                            detailDate = new DateTime(2020, 12, 5, 13, 32, 33, 121, DateTimeKind.Local).AddTicks(5464)
                         },
                         new
                         {
                             ID = 2,
                             MemberID = 2,
                             age = 31,
-                            detailDate = new DateTime(2020, 11, 16, 16, 20, 8, 376, DateTimeKind.Local).AddTicks(5438)
+                            detailDate = new DateTime(2020, 12, 5, 13, 32, 33, 123, DateTimeKind.Local).AddTicks(5466)
                         },
                         new
                         {
                             ID = 3,
                             MemberID = 3,
                             age = 37,
-                            detailDate = new DateTime(2020, 11, 16, 16, 20, 8, 376, DateTimeKind.Local).AddTicks(5438)
+                            detailDate = new DateTime(2020, 12, 5, 13, 32, 33, 123, DateTimeKind.Local).AddTicks(5466)
                         });
                 });
 
@@ -133,6 +133,48 @@ namespace TermProjectV1.Migrations
                         });
                 });
 
+            modelBuilder.Entity("TermProjectV1.Models.MemberReference", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("MemberID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ReferenceID")
+                        .HasColumnType("int");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("MemberID");
+
+                    b.HasIndex("ReferenceID");
+
+                    b.ToTable("MemberReference");
+
+                    b.HasData(
+                        new
+                        {
+                            ID = 1,
+                            MemberID = 1,
+                            ReferenceID = 1
+                        },
+                        new
+                        {
+                            ID = 2,
+                            MemberID = 2,
+                            ReferenceID = 2
+                        },
+                        new
+                        {
+                            ID = 3,
+                            MemberID = 3,
+                            ReferenceID = 3
+                        });
+                });
+
             modelBuilder.Entity("TermProjectV1.Models.Reference", b =>
                 {
                     b.Property<int>("ID")
@@ -184,6 +226,21 @@ namespace TermProjectV1.Migrations
                     b.HasOne("TermProjectV1.Models.Member", "Member")
                         .WithMany()
                         .HasForeignKey("MemberID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("TermProjectV1.Models.MemberReference", b =>
+                {
+                    b.HasOne("TermProjectV1.Models.Member", "Member")
+                        .WithMany("References")
+                        .HasForeignKey("MemberID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("TermProjectV1.Models.Reference", "Reference")
+                        .WithMany("Member")
+                        .HasForeignKey("ReferenceID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

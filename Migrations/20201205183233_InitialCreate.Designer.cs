@@ -10,14 +10,14 @@ using TermProjectV1.Models;
 namespace TermProjectV1.Migrations
 {
     [DbContext(typeof(TrackerContext))]
-    [Migration("20201116192901_1116Update3")]
-    partial class _1116Update3
+    [Migration("20201205183233_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.8")
+                .HasAnnotation("ProductVersion", "3.1.10")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -49,21 +49,21 @@ namespace TermProjectV1.Migrations
                             ID = 1,
                             MemberID = 1,
                             age = 34,
-                            detailDate = new DateTime(2020, 11, 16, 14, 29, 1, 134, DateTimeKind.Local).AddTicks(1994)
+                            detailDate = new DateTime(2020, 12, 5, 13, 32, 33, 121, DateTimeKind.Local).AddTicks(5464)
                         },
                         new
                         {
                             ID = 2,
                             MemberID = 2,
                             age = 31,
-                            detailDate = new DateTime(2020, 11, 16, 14, 29, 1, 136, DateTimeKind.Local).AddTicks(1995)
+                            detailDate = new DateTime(2020, 12, 5, 13, 32, 33, 123, DateTimeKind.Local).AddTicks(5466)
                         },
                         new
                         {
                             ID = 3,
                             MemberID = 3,
                             age = 37,
-                            detailDate = new DateTime(2020, 11, 16, 14, 29, 1, 136, DateTimeKind.Local).AddTicks(1995)
+                            detailDate = new DateTime(2020, 12, 5, 13, 32, 33, 123, DateTimeKind.Local).AddTicks(5466)
                         });
                 });
 
@@ -117,33 +117,72 @@ namespace TermProjectV1.Migrations
                         new
                         {
                             ID = 1,
-                            LastName = "Frank",
-                            name = "Tim Largent"
+                            LastName = "Largent",
+                            name = "Tim"
                         },
                         new
                         {
                             ID = 2,
-                            LastName = "Frank",
+                            LastName = "Lehr",
                             email = "mlehr@mail.com",
-                            name = "Max Lehr"
+                            name = "Max"
                         },
                         new
                         {
                             ID = 3,
-                            LastName = "Frank",
-                            name = "Brett Macki"
+                            LastName = "Macki",
+                            name = "Brett"
+                        });
+                });
+
+            modelBuilder.Entity("TermProjectV1.Models.MemberReference", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("MemberID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ReferenceID")
+                        .HasColumnType("int");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("MemberID");
+
+                    b.HasIndex("ReferenceID");
+
+                    b.ToTable("MemberReference");
+
+                    b.HasData(
+                        new
+                        {
+                            ID = 1,
+                            MemberID = 1,
+                            ReferenceID = 1
+                        },
+                        new
+                        {
+                            ID = 2,
+                            MemberID = 2,
+                            ReferenceID = 2
+                        },
+                        new
+                        {
+                            ID = 3,
+                            MemberID = 3,
+                            ReferenceID = 3
                         });
                 });
 
             modelBuilder.Entity("TermProjectV1.Models.Reference", b =>
                 {
-                    b.Property<int>("ReferenceId")
+                    b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("ID")
-                        .HasColumnType("int");
 
                     b.Property<string>("LastName")
                         .HasColumnType("nvarchar(30)")
@@ -153,31 +192,34 @@ namespace TermProjectV1.Migrations
                         .HasColumnType("nvarchar(30)")
                         .HasMaxLength(30);
 
-                    b.HasKey("ReferenceId");
+                    b.Property<int>("ReferenceId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ID");
 
                     b.ToTable("References");
 
                     b.HasData(
                         new
                         {
-                            ReferenceId = 1,
                             ID = 2,
-                            LastName = "Frank",
-                            Name = "Brett Macki"
+                            LastName = "Macki",
+                            Name = "Brett",
+                            ReferenceId = 1
                         },
                         new
                         {
-                            ReferenceId = 2,
                             ID = 3,
-                            LastName = "Frank",
-                            Name = "Tim Largent"
+                            LastName = "Largent",
+                            Name = "Tim",
+                            ReferenceId = 2
                         },
                         new
                         {
-                            ReferenceId = 3,
                             ID = 1,
-                            LastName = "Frank",
-                            Name = "Max Lehr"
+                            LastName = "Lehr",
+                            Name = "Max ",
+                            ReferenceId = 3
                         });
                 });
 
@@ -186,6 +228,21 @@ namespace TermProjectV1.Migrations
                     b.HasOne("TermProjectV1.Models.Member", "Member")
                         .WithMany()
                         .HasForeignKey("MemberID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("TermProjectV1.Models.MemberReference", b =>
+                {
+                    b.HasOne("TermProjectV1.Models.Member", "Member")
+                        .WithMany("References")
+                        .HasForeignKey("MemberID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("TermProjectV1.Models.Reference", "Reference")
+                        .WithMany("Member")
+                        .HasForeignKey("ReferenceID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

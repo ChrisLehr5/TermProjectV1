@@ -10,8 +10,8 @@ using TermProjectV1.Models;
 namespace TermProjectV1.Migrations
 {
     [DbContext(typeof(TrackerContext))]
-    [Migration("20201205183233_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20201205213619_intitalcreate")]
+    partial class intitalcreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -49,21 +49,21 @@ namespace TermProjectV1.Migrations
                             ID = 1,
                             MemberID = 1,
                             age = 34,
-                            detailDate = new DateTime(2020, 12, 5, 13, 32, 33, 121, DateTimeKind.Local).AddTicks(5464)
+                            detailDate = new DateTime(2020, 12, 5, 16, 36, 19, 389, DateTimeKind.Local).AddTicks(2129)
                         },
                         new
                         {
                             ID = 2,
                             MemberID = 2,
                             age = 31,
-                            detailDate = new DateTime(2020, 12, 5, 13, 32, 33, 123, DateTimeKind.Local).AddTicks(5466)
+                            detailDate = new DateTime(2020, 12, 5, 16, 36, 19, 392, DateTimeKind.Local).AddTicks(2131)
                         },
                         new
                         {
                             ID = 3,
                             MemberID = 3,
                             age = 37,
-                            detailDate = new DateTime(2020, 12, 5, 13, 32, 33, 123, DateTimeKind.Local).AddTicks(5466)
+                            detailDate = new DateTime(2020, 12, 5, 16, 36, 19, 392, DateTimeKind.Local).AddTicks(2131)
                         });
                 });
 

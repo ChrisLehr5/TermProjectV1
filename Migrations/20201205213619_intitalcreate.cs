@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace TermProjectV1.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class intitalcreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -125,9 +125,9 @@ namespace TermProjectV1.Migrations
                 columns: new[] { "ID", "MemberID", "age", "detailDate" },
                 values: new object[,]
                 {
-                    { 1, 1, 34, new DateTime(2020, 12, 5, 13, 32, 33, 121, DateTimeKind.Local).AddTicks(5464) },
-                    { 2, 2, 31, new DateTime(2020, 12, 5, 13, 32, 33, 123, DateTimeKind.Local).AddTicks(5466) },
-                    { 3, 3, 37, new DateTime(2020, 12, 5, 13, 32, 33, 123, DateTimeKind.Local).AddTicks(5466) }
+                    { 1, 1, 34, new DateTime(2020, 12, 5, 16, 36, 19, 389, DateTimeKind.Local).AddTicks(2129) },
+                    { 2, 2, 31, new DateTime(2020, 12, 5, 16, 36, 19, 392, DateTimeKind.Local).AddTicks(2131) },
+                    { 3, 3, 37, new DateTime(2020, 12, 5, 16, 36, 19, 392, DateTimeKind.Local).AddTicks(2131) }
                 });
 
             migrationBuilder.CreateIndex(

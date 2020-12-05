@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -20,6 +21,7 @@ namespace TermProjectV1.Controllers
         }
 
         // GET: Member
+        [Authorize(Roles = "Administrator,Manager,User")]
         public async Task<IActionResult> Index(string sortOrder, string currentFilter, string searchString, int? pageNumber)
         {
             ViewData["CurrentSort"] = sortOrder;
@@ -64,9 +66,10 @@ namespace TermProjectV1.Controllers
             int pageSize = 5;
             return View(await PaginatedList<Member>.CreateAsync(member.AsNoTracking(), pageNumber ?? 1, pageSize));
         }
-    
+
 
         // GET: Member/Details/5
+        [Authorize(Roles = "Administrator,Manager,User")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -95,6 +98,7 @@ namespace TermProjectV1.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrator,Manager,User")]
         public async Task<IActionResult> Create([Bind("ID,name,LastName,gender,address,city,state,zip,email,cell")] Member member)
         {
             if (ModelState.IsValid)
@@ -107,6 +111,7 @@ namespace TermProjectV1.Controllers
         }
 
         // GET: Member/Edit/5
+        [Authorize(Roles = "Administrator,Manager,User")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -127,6 +132,7 @@ namespace TermProjectV1.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrator,Manager,User")]
         public async Task<IActionResult> Edit(int id, [Bind("ID,name,LastName,gender,address,city,state,zip,email,cell")] Member member)
         {
             if (id != member.ID)
@@ -158,6 +164,7 @@ namespace TermProjectV1.Controllers
         }
 
         // GET: Member/Delete/5
+        [Authorize(Roles = "Administrator,Manager,User")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -178,6 +185,7 @@ namespace TermProjectV1.Controllers
         // POST: Member/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrator,Manager,User")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var member = await _context.Membership.FindAsync(id);

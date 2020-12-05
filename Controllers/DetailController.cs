@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -19,6 +20,7 @@ namespace TermProjectV1.Controllers
         }
 
         // GET: Detail
+        [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
             var trackerContext = _context.Statistics.Include(d => d.Member);
@@ -26,6 +28,7 @@ namespace TermProjectV1.Controllers
         }
 
         // GET: Detail/Details/5
+       
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -45,6 +48,7 @@ namespace TermProjectV1.Controllers
         }
 
         // GET: Detail/Create
+       
         public IActionResult Create()
         {
             ViewData["MemberID"] = new SelectList(_context.Membership, "ID", "name");
@@ -55,7 +59,7 @@ namespace TermProjectV1.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken]        
         public async Task<IActionResult> Create([Bind("ID,detailDate,age,MemberID")] Details details)
         {
             if (ModelState.IsValid)
@@ -68,7 +72,7 @@ namespace TermProjectV1.Controllers
             return View(details);
         }
 
-        // GET: Detail/Edit/5
+        // GET: Detail/Edit/5       
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -89,7 +93,7 @@ namespace TermProjectV1.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken]        
         public async Task<IActionResult> Edit(int id, [Bind("ID,detailDate,age,MemberID")] Details details)
         {
             if (id != details.ID)
@@ -121,7 +125,7 @@ namespace TermProjectV1.Controllers
             return View(details);
         }
 
-        // GET: Detail/Delete/5
+        // GET: Detail/Delete/5       
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)

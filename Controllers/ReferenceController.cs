@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -19,6 +20,7 @@ namespace TermProjectV1.Controllers
         }
 
         // GET: Reference
+        [Authorize(Roles = "Administrator,Manager,User")]
         public async Task<IActionResult> Index(string sortOrder, string currentFilter, string searchString, int? pageNumber)
         {
 
@@ -60,6 +62,7 @@ namespace TermProjectV1.Controllers
         }
 
         // GET: Reference/Details/5
+        [Authorize(Roles = "Administrator,Manager,User")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -88,6 +91,7 @@ namespace TermProjectV1.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrator,Manager,User")]
         public async Task<IActionResult> Create([Bind("ReferenceId,Name,ID")] Reference reference)
         {
             if (ModelState.IsValid)
@@ -100,6 +104,7 @@ namespace TermProjectV1.Controllers
         }
 
         // GET: Reference/Edit/5
+        [Authorize(Roles = "Administrator,Manager,User")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -120,6 +125,7 @@ namespace TermProjectV1.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrator,Manager,User")]
         public async Task<IActionResult> Edit(int id, [Bind("ReferenceId,Name,ID")] Reference reference)
         {
             if (id != reference.ID)
@@ -151,6 +157,7 @@ namespace TermProjectV1.Controllers
         }
 
         // GET: Reference/Delete/5
+        [Authorize(Roles = "Administrator,Manager,User")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -169,6 +176,7 @@ namespace TermProjectV1.Controllers
         }
 
         // POST: Reference/Delete/5
+        [Authorize(Roles = "Administrator,Manager,User")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

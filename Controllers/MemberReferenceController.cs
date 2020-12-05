@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -19,6 +20,7 @@ namespace TermProjectV1.Controllers
         }
 
         // GET: MemberReference
+        [Authorize(Roles = "Administrator,Manager")]
         public async Task<IActionResult> Index()
         {
             var trackerContext = _context.MemberReference.Include(m => m.Member).Include(m => m.Reference);
@@ -26,6 +28,7 @@ namespace TermProjectV1.Controllers
         }
 
         // GET: MemberReference/Details/5
+        [Authorize(Roles = "Administrator,Manager")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -46,6 +49,7 @@ namespace TermProjectV1.Controllers
         }
 
         // GET: MemberReference/Create
+        [Authorize(Roles = "Administrator,Manager")]
         public IActionResult Create()
         {
             ViewData["MemberID"] = new SelectList(_context.Membership, "ID", "name");
@@ -58,6 +62,7 @@ namespace TermProjectV1.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrator,Manager")]
         public async Task<IActionResult> Create([Bind("ID,MemberID,ReferenceID")] MemberReference memberReference)
         {
             if (ModelState.IsValid)
@@ -72,6 +77,7 @@ namespace TermProjectV1.Controllers
         }
 
         // GET: MemberReference/Edit/5
+        [Authorize(Roles = "Administrator,Manager")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -94,6 +100,7 @@ namespace TermProjectV1.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrator,Manager")]
         public async Task<IActionResult> Edit(int id, [Bind("ID,MemberID,ReferenceID")] MemberReference memberReference)
         {
             if (id != memberReference.ID)
@@ -127,6 +134,7 @@ namespace TermProjectV1.Controllers
         }
 
         // GET: MemberReference/Delete/5
+        [Authorize(Roles = "Administrator,Manager")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -147,6 +155,7 @@ namespace TermProjectV1.Controllers
         }
 
         // POST: MemberReference/Delete/5
+        [Authorize(Roles = "Administrator,Manager")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

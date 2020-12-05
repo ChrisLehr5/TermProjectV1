@@ -10,8 +10,8 @@ using TermProjectV1.Models;
 namespace TermProjectV1.Migrations
 {
     [DbContext(typeof(TrackerContext))]
-    [Migration("20201020231359_DataAnnotations3")]
-    partial class DataAnnotations3
+    [Migration("20201116191134_1116Update2")]
+    partial class _1116Update2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -35,7 +35,6 @@ namespace TermProjectV1.Migrations
                         .HasColumnType("int");
 
                     b.Property<DateTime>("detailDate")
-                        .HasColumnName("Date Enrolled")
                         .HasColumnType("datetime2");
 
                     b.HasKey("ID");
@@ -50,21 +49,21 @@ namespace TermProjectV1.Migrations
                             ID = 1,
                             MemberID = 1,
                             age = 34,
-                            detailDate = new DateTime(2020, 10, 20, 19, 13, 58, 856, DateTimeKind.Local).AddTicks(83)
+                            detailDate = new DateTime(2020, 11, 16, 14, 11, 34, 580, DateTimeKind.Local).AddTicks(3399)
                         },
                         new
                         {
                             ID = 2,
                             MemberID = 2,
                             age = 31,
-                            detailDate = new DateTime(2020, 10, 20, 19, 13, 58, 859, DateTimeKind.Local).AddTicks(85)
+                            detailDate = new DateTime(2020, 11, 16, 14, 11, 34, 582, DateTimeKind.Local).AddTicks(3400)
                         },
                         new
                         {
                             ID = 3,
                             MemberID = 3,
                             age = 37,
-                            detailDate = new DateTime(2020, 10, 20, 19, 13, 58, 859, DateTimeKind.Local).AddTicks(85)
+                            detailDate = new DateTime(2020, 11, 16, 14, 11, 34, 582, DateTimeKind.Local).AddTicks(3400)
                         });
                 });
 
@@ -74,6 +73,10 @@ namespace TermProjectV1.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
 
                     b.Property<string>("address")
                         .HasColumnType("nvarchar(50)")
@@ -95,8 +98,8 @@ namespace TermProjectV1.Migrations
                     b.Property<string>("name")
                         .IsRequired()
                         .HasColumnName("Member Full Name")
-                        .HasColumnType("nvarchar(30)")
-                        .HasMaxLength(30);
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
 
                     b.Property<string>("state")
                         .HasColumnType("nvarchar(2)")
@@ -114,17 +117,20 @@ namespace TermProjectV1.Migrations
                         new
                         {
                             ID = 1,
+                            LastName = "Frank",
                             name = "Tim Largent"
                         },
                         new
                         {
                             ID = 2,
+                            LastName = "Frank",
                             email = "mlehr@mail.com",
                             name = "Max Lehr"
                         },
                         new
                         {
                             ID = 3,
+                            LastName = "Frank",
                             name = "Brett Macki"
                         });
                 });
@@ -139,8 +145,13 @@ namespace TermProjectV1.Migrations
                     b.Property<int>("ID")
                         .HasColumnType("int");
 
+                    b.Property<string>("LastName")
+                        .HasColumnType("nvarchar(30)")
+                        .HasMaxLength(30);
+
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(30)")
+                        .HasMaxLength(30);
 
                     b.HasKey("ReferenceId");
 
@@ -151,18 +162,21 @@ namespace TermProjectV1.Migrations
                         {
                             ReferenceId = 1,
                             ID = 2,
+                            LastName = "Frank",
                             Name = "Brett Macki"
                         },
                         new
                         {
                             ReferenceId = 2,
                             ID = 3,
+                            LastName = "Frank",
                             Name = "Tim Largent"
                         },
                         new
                         {
                             ReferenceId = 3,
                             ID = 1,
+                            LastName = "Frank",
                             Name = "Max Lehr"
                         });
                 });

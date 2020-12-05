@@ -3,64 +3,73 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace TermProjectV1.Migrations
 {
-    public partial class DataAnnotations : Migration
+    public partial class _1116Update : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.RenameColumn(
-                name: "name",
+            migrationBuilder.AlterColumn<string>(
+                name: "Member Last Name",
                 table: "Membership",
-                newName: "Member Full Name");
+                maxLength: 50,
+                nullable: true,
+                oldClrType: typeof(string),
+                oldType: "nvarchar(50)",
+                oldMaxLength: 50);
 
             migrationBuilder.UpdateData(
                 table: "Statistics",
                 keyColumn: "ID",
                 keyValue: 1,
                 column: "detailDate",
-                value: new DateTime(2020, 10, 20, 18, 39, 36, 844, DateTimeKind.Local).AddTicks(680));
+                value: new DateTime(2020, 11, 16, 14, 5, 21, 614, DateTimeKind.Local).AddTicks(75));
 
             migrationBuilder.UpdateData(
                 table: "Statistics",
                 keyColumn: "ID",
                 keyValue: 2,
                 column: "detailDate",
-                value: new DateTime(2020, 10, 20, 18, 39, 36, 846, DateTimeKind.Local).AddTicks(681));
+                value: new DateTime(2020, 11, 16, 14, 5, 21, 617, DateTimeKind.Local).AddTicks(76));
 
             migrationBuilder.UpdateData(
                 table: "Statistics",
                 keyColumn: "ID",
                 keyValue: 3,
                 column: "detailDate",
-                value: new DateTime(2020, 10, 20, 18, 39, 36, 846, DateTimeKind.Local).AddTicks(681));
+                value: new DateTime(2020, 11, 16, 14, 5, 21, 617, DateTimeKind.Local).AddTicks(76));
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.RenameColumn(
-                name: "Member Full Name",
+            migrationBuilder.AlterColumn<string>(
+                name: "Member Last Name",
                 table: "Membership",
-                newName: "name");
+                type: "nvarchar(50)",
+                maxLength: 50,
+                nullable: false,
+                oldClrType: typeof(string),
+                oldMaxLength: 50,
+                oldNullable: true);
 
             migrationBuilder.UpdateData(
                 table: "Statistics",
                 keyColumn: "ID",
                 keyValue: 1,
                 column: "detailDate",
-                value: new DateTime(2020, 10, 5, 20, 21, 26, 131, DateTimeKind.Local));
+                value: new DateTime(2020, 11, 11, 18, 10, 14, 995, DateTimeKind.Local).AddTicks(3511));
 
             migrationBuilder.UpdateData(
                 table: "Statistics",
                 keyColumn: "ID",
                 keyValue: 2,
                 column: "detailDate",
-                value: new DateTime(2020, 10, 5, 20, 21, 26, 134, DateTimeKind.Local).AddTicks(2));
+                value: new DateTime(2020, 11, 11, 18, 10, 14, 998, DateTimeKind.Local).AddTicks(3513));
 
             migrationBuilder.UpdateData(
                 table: "Statistics",
                 keyColumn: "ID",
                 keyValue: 3,
                 column: "detailDate",
-                value: new DateTime(2020, 10, 5, 20, 21, 26, 134, DateTimeKind.Local).AddTicks(2));
+                value: new DateTime(2020, 11, 11, 18, 10, 14, 998, DateTimeKind.Local).AddTicks(3513));
         }
     }
 }

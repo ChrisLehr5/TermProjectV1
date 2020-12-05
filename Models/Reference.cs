@@ -9,10 +9,11 @@ namespace TermProjectV1.Models
     public class Reference
     {
        [Key]
+        public int ID { get; set; }
         [Display(Name = "Reference ID")]
         public int ReferenceId { get; set; }
 
-        [Display(Name = "Reference Full Name")]
+        [Display(Name = "Reference First Name")]
         [StringLength(30, ErrorMessage = "Please enter the reference full name using 30 characters or less.")]
         [RegularExpression("^[a-zA-Z]*$", ErrorMessage = "Only alphabetic letters are allowed.")]
         public string Name { get; set; }
@@ -23,11 +24,8 @@ namespace TermProjectV1.Models
         [RegularExpression("^[a-zA-Z]*$", ErrorMessage = "Only alphabetic letters are allowed.")]
         public string LastName { get; set; }
 
+        //Navigation property
+        //public ICollection<MemberReference> MemberReferences { get; set; }
 
-
-        [Display(Name = "Associated Member ID")]
-        [Required(ErrorMessage ="Please enter a member id.")]
-        public int ID { get; set; }
-      
     }
 }

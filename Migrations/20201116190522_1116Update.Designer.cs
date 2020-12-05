@@ -10,8 +10,8 @@ using TermProjectV1.Models;
 namespace TermProjectV1.Migrations
 {
     [DbContext(typeof(TrackerContext))]
-    [Migration("20201020223937_DataAnnotations")]
-    partial class DataAnnotations
+    [Migration("20201116190522_1116Update")]
+    partial class _1116Update
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -49,21 +49,21 @@ namespace TermProjectV1.Migrations
                             ID = 1,
                             MemberID = 1,
                             age = 34,
-                            detailDate = new DateTime(2020, 10, 20, 18, 39, 36, 844, DateTimeKind.Local).AddTicks(680)
+                            detailDate = new DateTime(2020, 11, 16, 14, 5, 21, 614, DateTimeKind.Local).AddTicks(75)
                         },
                         new
                         {
                             ID = 2,
                             MemberID = 2,
                             age = 31,
-                            detailDate = new DateTime(2020, 10, 20, 18, 39, 36, 846, DateTimeKind.Local).AddTicks(681)
+                            detailDate = new DateTime(2020, 11, 16, 14, 5, 21, 617, DateTimeKind.Local).AddTicks(76)
                         },
                         new
                         {
                             ID = 3,
                             MemberID = 3,
                             age = 37,
-                            detailDate = new DateTime(2020, 10, 20, 18, 39, 36, 846, DateTimeKind.Local).AddTicks(681)
+                            detailDate = new DateTime(2020, 11, 16, 14, 5, 21, 617, DateTimeKind.Local).AddTicks(76)
                         });
                 });
 
@@ -73,6 +73,11 @@ namespace TermProjectV1.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("LastName")
+                        .HasColumnName("Member Last Name")
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
 
                     b.Property<string>("address")
                         .HasColumnType("nvarchar(50)")
@@ -94,8 +99,8 @@ namespace TermProjectV1.Migrations
                     b.Property<string>("name")
                         .IsRequired()
                         .HasColumnName("Member Full Name")
-                        .HasColumnType("nvarchar(30)")
-                        .HasMaxLength(30);
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
 
                     b.Property<string>("state")
                         .HasColumnType("nvarchar(2)")
@@ -113,56 +118,67 @@ namespace TermProjectV1.Migrations
                         new
                         {
                             ID = 1,
+                            LastName = "Frank",
                             name = "Tim Largent"
                         },
                         new
                         {
                             ID = 2,
+                            LastName = "Frank",
                             email = "mlehr@mail.com",
                             name = "Max Lehr"
                         },
                         new
                         {
                             ID = 3,
+                            LastName = "Frank",
                             name = "Brett Macki"
                         });
                 });
 
             modelBuilder.Entity("TermProjectV1.Models.Reference", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("ReferenceId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("ReferenceId")
+                    b.Property<int>("ID")
                         .HasColumnType("int");
 
-                    b.HasKey("ID");
+                    b.Property<string>("LastName")
+                        .HasColumnType("nvarchar(30)")
+                        .HasMaxLength(30);
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(30)")
+                        .HasMaxLength(30);
+
+                    b.HasKey("ReferenceId");
 
                     b.ToTable("References");
 
                     b.HasData(
                         new
                         {
+                            ReferenceId = 1,
                             ID = 2,
-                            Name = "Brett Macki",
-                            ReferenceId = 1
+                            LastName = "Frank",
+                            Name = "Brett Macki"
                         },
                         new
                         {
+                            ReferenceId = 2,
                             ID = 3,
-                            Name = "Tim Largent",
-                            ReferenceId = 2
+                            LastName = "Frank",
+                            Name = "Tim Largent"
                         },
                         new
                         {
+                            ReferenceId = 3,
                             ID = 1,
-                            Name = "Max Lehr",
-                            ReferenceId = 3
+                            LastName = "Frank",
+                            Name = "Max Lehr"
                         });
                 });
 

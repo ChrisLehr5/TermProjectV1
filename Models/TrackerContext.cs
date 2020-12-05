@@ -22,22 +22,22 @@ namespace TermProjectV1.Models
 				new Reference
 				{
 					ReferenceId = 1,
-					Name = "Brett Macki",
-					LastName = "Frank",
+					Name = "Brett",
+					LastName = "Macki",
 					ID = 2, 					
 				},
 				new Reference
 				{
 					ReferenceId = 2,
-					Name = "Tim Largent",
-					LastName = "Frank",
+					Name = "Tim",
+					LastName = "Largent",
 					ID = 3
 				},
 				new Reference
 				{
 					ReferenceId = 3,
-					Name = "Max Lehr",
-					LastName = "Frank",
+					Name = "Max ",
+					LastName = "Lehr",
 					ID = 1
 				}
 				);
@@ -46,21 +46,21 @@ namespace TermProjectV1.Models
 				new Member
                 {
 					ID = 1, 
-					name= "Tim Largent",
-					LastName = "Frank"
-                },
+					name= "Tim",
+					LastName = "Largent"
+				},
 				new Member
 				{
 					ID = 2,
-					name = "Max Lehr",
-					LastName = "Frank",
+					name = "Max",
+					LastName = "Lehr",
 					email = "mlehr@mail.com"
 				},
 				new Member
 				{
 				ID= 3,
-					name = "Brett Macki",
-					LastName = "Frank"
+					name = "Brett",
+					LastName = "Macki"
 				}
 			 );
 			modelBuilder.Entity<Details>().HasData(

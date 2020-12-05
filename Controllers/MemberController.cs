@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using TermProjectV1.Models;
 
+
 namespace TermProjectV1.Controllers
 {
     public class MemberController : Controller
@@ -19,10 +20,51 @@ namespace TermProjectV1.Controllers
         }
 
         // GET: Member
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string sortOrder, string currentFilter, string searchString, int? pageNumber)
         {
-            return View(await _context.Membership.ToListAsync());
+            ViewData["CurrentSort"] = sortOrder;
+            ViewData["NameSortParam"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewData["DateSortParam"] = sortOrder == "Zip" ? "zip_desc" : "Zip";
+
+            if (searchString != null)
+            {
+                pageNumber = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewData["CurrentFilter"] = searchString;
+
+
+            var member = from e in _context.Membership select e;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+               member = member.Where(s => s.LastName.Contains(searchString)
+                    || s.name.Contains(searchString));
+            }
+
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    member = member.OrderByDescending(s => s.LastName);
+                    break;
+                case "Zip":
+                    member = member.OrderBy(s => s.zip);
+                    break;
+                case "date_desc":
+                    member = member.OrderByDescending(s => s.zip);
+                    break;
+                default:
+                    member.OrderBy(s => s.LastName);
+                    break;
+            }
+            int pageSize = 5;
+            return View(await PaginatedList<Member>.CreateAsync(member.AsNoTracking(), pageNumber ?? 1, pageSize));
         }
+    
 
         // GET: Member/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -53,7 +95,7 @@ namespace TermProjectV1.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,name,gender,address,city,state,zip,email,cell")] Member member)
+        public async Task<IActionResult> Create([Bind("ID,name,LastName,gender,address,city,state,zip,email,cell")] Member member)
         {
             if (ModelState.IsValid)
             {
@@ -85,7 +127,7 @@ namespace TermProjectV1.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,name,gender,address,city,state,zip,email,cell")] Member member)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,name,LastName,gender,address,city,state,zip,email,cell")] Member member)
         {
             if (id != member.ID)
             {

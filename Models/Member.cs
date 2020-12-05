@@ -14,16 +14,16 @@ namespace TermProjectV1.Models
         public int ID { get; set; }
         //changed from id
         [Required]
+        //if column name deleted, the migration error appears for migration that doesn't exist any more??
         [Column("Member Full Name")]
         [Display(Name ="First Name")]
         [StringLength(50,ErrorMessage ="Please enter the member full name using 30 characters or less.")]
         [RegularExpression("^[a-zA-Z]*$", ErrorMessage = "Only alphabetic letters are allowed.")]
-        public string name { get; set; }
-
-        [Required]
-        [Column("Member Last Name")]
+        public string name { get; set; }       
+        
         [Display(Name = "Last Name")]
-        [StringLength(50, MinimumLength = 3)]
+        [StringLength(50, ErrorMessage = "Please enter the member full name using 30 characters or less.")]
+        [RegularExpression("^[a-zA-Z]*$", ErrorMessage = "Only alphabetic letters are allowed.")]
         public string LastName { get; set; }
 
         [Display(Name = "Gender")]
@@ -56,5 +56,7 @@ namespace TermProjectV1.Models
         [RegularExpression(@"\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})", ErrorMessage = "Please enter your phone number i.e 231-988-8888.")]
         public string cell { get; set; }
 
+        //Nvaigation property
+        //public ICollection<MemberReference> MemberReferences { get; set; }
     }
 }

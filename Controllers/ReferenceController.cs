@@ -157,7 +157,7 @@ namespace TermProjectV1.Controllers
         }
 
         // GET: Reference/Delete/5
-        [Authorize(Roles = "Administrator,Manager,User")]
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -176,7 +176,7 @@ namespace TermProjectV1.Controllers
         }
 
         // POST: Reference/Delete/5
-        [Authorize(Roles = "Administrator,Manager,User")]
+        [Authorize(Roles = "Administrator")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

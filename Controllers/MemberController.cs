@@ -164,7 +164,7 @@ namespace TermProjectV1.Controllers
         }
 
         // GET: Member/Delete/5
-        [Authorize(Roles = "Administrator,Manager,User")]
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -185,7 +185,7 @@ namespace TermProjectV1.Controllers
         // POST: Member/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Administrator,Manager,User")]
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var member = await _context.Membership.FindAsync(id);
